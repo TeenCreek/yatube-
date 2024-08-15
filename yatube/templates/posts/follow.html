@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}
+  Лента подписок
+{% endblock %}
+{% block content %}
+{% load cache %}
+  <h1>Последние обновления на сайте</h1>
+  {% include 'posts/includes/switcher.html' with follow=True %}
+  {% cache 20 follow_page page_obj.number %}
+    {% for post in page_obj %}
+      {% include 'includes/article.html' with SHOW_GROUP_LINK=True SHOW_DETAIL_INFO=True %}
+    {% endfor %}
+    {% include 'includes/paginator.html' %}
+  {% endcache %}
+{% endblock %}

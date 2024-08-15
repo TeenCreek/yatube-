@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}
+  Профайл пользователя {{ author.get_full_name }}
+{% endblock %}
+{% block content %}
+  {% include 'posts/includes/following.html' %}
+  {% for post in page_obj %}
+    {% include 'includes/article.html' with SHOW_GROUP_LINK=True %}
+  {% endfor %}
+  {% include 'includes/paginator.html' %}
+{% endblock %}
